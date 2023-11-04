@@ -70,12 +70,13 @@ The project structure is organized as follows:
 ```bash
 ecommerce-project/
 ├── public/             # Static assets
-├── routes/             # Express routes
+├── src/                # Source Folder
+  ├── config/             # Configuration files
+  ├── controllers/        # Request handlers
+  ├── routes/             # Express routes
+  ├── models/             # MongoDB models
+  ├── middleware/         # Middleware functions
 ├── views/              # EJS views
-├── models/             # MongoDB models
-├── controllers/        # Request handlers
-├── middleware/         # Middleware functions
-├── config/             # Configuration files
 ├── .env                # Environment variables
 ├── app.js              # Express application setup
 ```
