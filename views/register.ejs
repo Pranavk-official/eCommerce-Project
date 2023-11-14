@@ -1,0 +1,44 @@
+<div class="container py-5 my-3">
+  <h1 class="text-center p-2">Register</h1>
+  <% if(typeof alert !='undefined' ) { %>
+    <% alert.forEach(function(error) { %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= error.msg %> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+      <% }) %>
+  <% } %>
+  <% if(typeof message !='undefined' ) { %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <%= message %> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+  <% } %>
+  <div class="container py-5 card" style="max-width: 500px;">
+      <div class="form-signup w-100 m-auto card-body">
+      <form action="/register" method="POST">
+        <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Register for free!!</h1>
+  
+        <div class="form-floating pb-1">
+          <input name="username" type="username" class="form-control" id="floatingInput" placeholder="John Doe">
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating pb-1">
+          <input name="email" type="email" class="form-control" id="floatingInput" placeholder="">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating pb-1">
+          <input name="phone" type="phone" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Phone</label>
+        </div>
+        <div class="form-floating pb-1">
+          <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+  
+        <button class="btn btn-primary w-100 my-2 py-2" type="submit">Register</button>      
+      </form>
+    </div>
+  </div>
+</div>

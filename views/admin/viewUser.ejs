@@ -1,0 +1,121 @@
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-2 border-bottom">
+    <h1 class="h2">View User</h1>
+    <div class="btn-toolbar mb-2 mb-md 0">
+        <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">
+                Share
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">
+                Export
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="col py-3">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><a>
+                            <%= user.username %>
+                        </a></li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="col text-end fw-light">
+            <b>Date Created <%= new Date(user.createdAt).toUTCString() %> </b><br>
+            <b>Last Updated <%= new Date(user.updatedAt).toUTCString() %> </b><br>
+            <b>UserId: </b>
+            <%= user._id %>
+        </div>
+    </div>
+</div>
+
+
+<div class="container rounded bg-white mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px"
+                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
+                <span class="font-weight-bold">
+                    <%= user.username %>
+                </span>
+                <span class="text-black-50">
+                    <%= user.email %>
+                </span>
+                <div class="pt-2">
+                    <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                    <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                </div>
+            </div>
+        </div>
+        <form action="#" method="post" class="col-md-5 border-right">
+            <fieldset disabled="disabled">
+                <div class="p-2">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">
+                            <%= user.username %> Profile
+                        </h4>
+                    </div>
+                    <div class="row mt-1 g-2">
+                        <div class="col-md-6">
+                            <label class="labels">Name</label>
+                            <input type="text" class="form-control" placeholder="first name"
+                                value="<%= userProfile.firstName %>" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Surname</label>
+                            <input type="text" class="form-control" value="<%= userProfile.lastName %>"
+                                placeholder="surname" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="labels">Email ID</label>
+                            <input type="text" class="form-control" placeholder="enter email id"
+                                value="<%= user.email %>" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Mobile Number</label>
+                            <input type="text" class="form-control" placeholder="enter phone number"
+                                value="<%= user.phone %>" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Address Line 1</label>
+                            <input type="text" class="form-control" placeholder="enter address line 1" 
+                                value="<%= userAddress.address1 %>" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Address Line 2</label>
+                            <input type="text" class="form-control" placeholder="enter address line 2" 
+                                value="<%= userAddress.address2 %>" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Postcode</label>
+                            <input type="text" class="form-control" placeholder="enter zip code"
+                                value="<%= userAddress.zip %>" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">State</label>
+                            <input type="text" class="form-control" placeholder="enter State"
+                                value="<%= userAddress.state %>" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Area</label>
+                            <input type="text" class="form-control" placeholder="enter Area"
+                                value="<%= userAddress.city %>" />
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </fieldset>
+
+        </form>
+
+    </div>
+</div>
