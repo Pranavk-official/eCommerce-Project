@@ -7,7 +7,7 @@ const multer = require('multer');
 const upload = multer({ dest: '../public/data/uploads/' })
 
 
-const sendVerifyEmail = async (name, email,token) => {
+const sendVerifyEmail = async (name, email, token) => {
 
     try {
 
@@ -52,7 +52,7 @@ const sendVerifyEmail = async (name, email,token) => {
 
 exports.verify_email = async (req, res) => {
     try {
-        
+
         const user = await User.findOneAndUpdate(
             { verificationToken: req.query.token },
             { isVerified: true }
@@ -68,8 +68,10 @@ exports.verify_email = async (req, res) => {
         console.log(error.message);
     }
 };
+
+
 exports.email_verify = async (req, res) => {
-    
+
     const locals = {
         title: 'eCommerce Project | verify user'
     }
@@ -115,15 +117,37 @@ exports.login_post = (req, res) => {
         username: req.body.username,
         password: req.body.password
     })
-    req.login(user, (error) => {
+    req.login(user, async (error) => {
         if (error) {
             console.log(error.message);
         } else {
+
             passport.authenticate('local')(req, res, () => {
+                console.log(user);
                 res.redirect('/home')
             })
+
+
         }
     })
+}
+
+exports.googleSignUp = (req, res) => {
+    try {
+        passport.authenticate('google', {
+            scope: ['profile']
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+exports.googleSignIn = (req, res) => {
+
+    passport.authenticate('google', { failureRedirect: '/login' }),
+        function (req, res) {
+            // Successful authentication, redirect home.
+            res.redirect('/');
+        }
 }
 
 /**
@@ -181,10 +205,7 @@ exports.register_post = async (req, res) => {
                     return res.render('register', { message: 'Registration failed' });
                 }
 
-                sendVerifyEmail(req.body.username, req.body.email,token)
-                // passport.authenticate('local')(req,res, () => {
-                //     res.redirect('/home')
-                // })
+                sendVerifyEmail(req.body.username, req.body.email, token)
             });
 
         }
@@ -194,6 +215,9 @@ exports.register_post = async (req, res) => {
     }
 }
 
+/**
+ * Homepage
+ */
 
 exports.home_get = async (req, res) => {
     try {

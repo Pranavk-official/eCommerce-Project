@@ -1,16 +1,18 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const findOrCreate = require('mongoose-findorcreate')
 
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: true
     },
     email: {
         type: String,
-        required: true
+    },
+    googleId: {
+        type: String,
     },
     verificationToken: {
         type: String,
@@ -84,5 +86,6 @@ const UserSchema = new Schema({
 })
 
 UserSchema.plugin(passportLocalMongoose)
+UserSchema.plugin(findOrCreate)
 
 module.exports = mongoose.model('User', UserSchema)

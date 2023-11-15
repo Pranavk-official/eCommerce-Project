@@ -1,21 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controller/adminController');
+const {isAuthenticated, isAdmin , isVerified} = require('../middlewares/authMiddleware');
 const adminLayout = './layouts/adminLayout'
 
-
-/**
- * isLoggedIn middleware
- */
-
-const isLoggedIn = (req,res,next) => {
-	console.log(req.isAuthenticated());
-	if(req.isAuthenticated()){
-		next()
-	} else {
-		return res.redirect('/admin/login')
-	}
-}
 
 
 /***************************************************************************************************************** */
@@ -24,7 +12,7 @@ const isLoggedIn = (req,res,next) => {
  * GET / 
  * Log In
  */
-router.get('/', isLoggedIn,adminController.homepage)
+router.get('/', isAuthenticated,isAdmin,adminController.homepage)
 
 /**
  * GET / 
@@ -61,7 +49,7 @@ router.get('/logout', adminController.logout)
  * GET / 
  * View Users
  */
-router.get('/users', isLoggedIn,adminController.viewUsers)
+router.get('/users', isAuthenticated,isAdmin,adminController.viewUsers)
 
 
 /**
